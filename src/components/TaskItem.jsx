@@ -1,6 +1,6 @@
 import React from "react";
 
-const TaskItem = ({ todo }) => {
+const TaskItem = ({ todo, onCheked, onDelete }) => {
   const getStyle = () => {
     return {
       textDecoration: todo.complete ? "line-through" : "none",
@@ -10,9 +10,13 @@ const TaskItem = ({ todo }) => {
   };
   return (
     <div style={getStyle()}>
-      <input type="checkbox" />
+      <input
+        type="checkbox"
+        cheked={todo.complete}
+        onChange={() => onCheked(todo.id)}
+      />
       {todo.task}
-      <button>X</button>
+      <button onClick={() => onDelete(todo.id)}>X</button>
     </div>
   );
 };
